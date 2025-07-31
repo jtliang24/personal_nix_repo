@@ -12,15 +12,11 @@
           ArtixGameLauncher = pkgs.callPackage ./Artix_Game_Launcher.nix {};
           kando = pkgs.callPackage ./kando.nix {};
           hello = pkgs.callPackage ./hello.nix {};
-          default = hello;
         };
         apps = rec {
           ArtixGameLauncher = flake-utils.lib.mkApp { drv = self.packages.${system}.ArtixGameLauncher; };
-          kando = flake-utils.lib.mkApp { drv = self.packages.${system}.ArtixGameLauncher; };
-          hello = pkgs.callPackage ./hello.nix {};
-          default = hello;
+          kando = flake-utils.lib.mkApp { drv = self.packages.${system}.kando; };
         };
       }
-  
   );
 }
