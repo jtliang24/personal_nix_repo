@@ -9,7 +9,7 @@
       let pkgs = nixpkgs.legacyPackages.${system}; in
       {
         packages = rec {
-          ArtixGameLauncher = pkgs.callPackage ./Artix_Game_Launcher.nix {};
+          ArtixGameLauncher = nixpkgs.legacyPackages."x86_64-linux".callPackage ./Artix_Game_Launcher.nix {};
           kando = pkgs.callPackage ./kando.nix {};
           hello = pkgs.callPackage ./hello.nix {};
         };
