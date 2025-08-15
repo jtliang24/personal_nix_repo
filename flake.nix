@@ -14,7 +14,7 @@
           hello = pkgs.callPackage ./hello.nix {};
         };
         apps = rec {
-          ArtixGameLauncher = flake-utils.lib.mkApp { drv = self.packages.${system}.ArtixGameLauncher; };
+          ArtixGameLauncher = flake-utils.lib.mkApp { drv = self.packages."x86_64-linux".ArtixGameLauncher; };
           kando = flake-utils.lib.mkApp { drv = self.packages.${system}.kando; };
         };
       }
