@@ -1,6 +1,9 @@
 {
   appimageTools,
+  stdenv,
   fetchurl,
+  lib,
+  ...
 }:
 let
   pname = "ArtixGameLauncher";
@@ -15,6 +18,14 @@ let
 in
 appimageTools.wrapType2 {
   inherit pname version src;
+
+  meta = with lib; {
+    description = "The unofficial Nix packaging for the official Artix Game Launcher.";
+    homepage = "https://www.artix.com/downloads/artixlauncher";
+    license = licenses.unfree;
+    maintainers = [ "jtliang24" ];
+    platforms = [ "x86_64-linux" ];
+  };
 
   extraPkgs = pkgs: [ ];
 
