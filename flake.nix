@@ -12,8 +12,7 @@
     }:
     let
       # Define ArtixGameLauncher only for x86_64-linux
-      artixSystem = "x86_64-linux";
-      artixPkgs = import nixpkgs { system = artixSystem; };
+      artixPkgs = import nixpkgs { system = "x86_64-linux"; };
       ArtixGameLauncher = artixPkgs.callPackage ./Artix_Game_Launcher.nix { };
     in
     flake-utils.lib.eachDefaultSystem (
@@ -26,19 +25,13 @@
           kando = pkgs.callPackage ./kando.nix { };
           hello = pkgs.callPackage ./hello.nix { };
         };
-
-        #apps = {
-        #  kando = flake-utils.lib.mkApp {
-        #    drv = pkgs.callPackage ./kando.nix {};
-        #  };
-        #};
       }
     )
     // {
       # Add ArtixGameLauncher separately
-      packages.${artixSystem}.ArtixGameLauncher = ArtixGameLauncher;
-      #apps.${artixSystem}.ArtixGameLauncher = flake-utils.lib.mkApp {
-      #  drv = ArtixGameLauncher;
-      #};
+      packages."x86_64-linux".ArtixGameLauncher = ArtixGameLauncher;
+    }
+    // {
+      overlays.default = import ./overlay.nix;
     };
 }
