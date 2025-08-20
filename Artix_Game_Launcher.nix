@@ -1,6 +1,6 @@
 {
   appimageTools,
-  fetchurl
+  fetchurl,
 }:
 let
   pname = "ArtixGameLauncher";
@@ -16,7 +16,7 @@ in
 appimageTools.wrapType2 {
   inherit pname version src;
 
-  extraPkgs = pkgs: [];
+  extraPkgs = pkgs: [ ];
 
   extraInstallCommands = ''
     mkdir -p $out/share/applications
@@ -25,4 +25,3 @@ appimageTools.wrapType2 {
   '';
 
 }
-
